@@ -70,7 +70,7 @@ func TestAPIV1(t *testing.T) {
 			servetypes.ClientViewResponse{},
 			0,
 			nil,
-			`{"stateID":"s3n5j759kirvvs3fqeott07a43lk41ud","lastMutationID":1,"patch":[{"op":"remove","path":"/"},{"op":"add","path":"/foo","valueString":"\"bar\""}],"checksum":"c4e7090d","clientViewInfo":{"httpStatusCode":0,"errorMessage":""}}`,
+			`{"stateID":"s3n5j759kirvvs3fqeott07a43lk41ud","lastMutationID":1,"patch":[{"op":"replace","path":"","valueString":"{}"},{"op":"add","path":"/foo","valueString":"\"bar\""}],"checksum":"c4e7090d","clientViewInfo":{"httpStatusCode":0,"errorMessage":""}}`,
 			""},
 
 		// Successful client view fetch.
@@ -83,7 +83,7 @@ func TestAPIV1(t *testing.T) {
 			servetypes.ClientViewResponse{ClientView: map[string]json.RawMessage{"new": b(`"value"`)}, LastMutationID: 2},
 			200,
 			nil,
-			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"remove","path":"/"},{"op":"add","path":"/new","valueString":"\"value\""}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
+			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"replace","path":"","valueString":"{}"},{"op":"add","path":"/new","valueString":"\"value\""}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
 			""},
 		// Successful client view fetch via override.
 		{"POST",
@@ -95,7 +95,7 @@ func TestAPIV1(t *testing.T) {
 			servetypes.ClientViewResponse{ClientView: map[string]json.RawMessage{"new": b(`"value"`)}, LastMutationID: 2},
 			200,
 			nil,
-			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"remove","path":"/"},{"op":"add","path":"/new","valueString":"\"value\""}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
+			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"replace","path":"","valueString":"{}"},{"op":"add","path":"/new","valueString":"\"value\""}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
 			""},
 
 		// Successful client view fetch via override (with override).
@@ -108,7 +108,7 @@ func TestAPIV1(t *testing.T) {
 			servetypes.ClientViewResponse{ClientView: map[string]json.RawMessage{"new": b(`"value"`)}, LastMutationID: 2},
 			200,
 			nil,
-			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"remove","path":"/"},{"op":"add","path":"/new","valueString":"\"value\""}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
+			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"replace","path":"","valueString":"{}"},{"op":"add","path":"/new","valueString":"\"value\""}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
 			""},
 
 		// Successful nop client view fetch where lastMutationID does not change.
@@ -147,7 +147,7 @@ func TestAPIV1(t *testing.T) {
 			servetypes.ClientViewResponse{ClientView: map[string]json.RawMessage{"new": b(`"value"`)}, LastMutationID: 2},
 			200,
 			errors.New("boom"),
-			`{"stateID":"s3n5j759kirvvs3fqeott07a43lk41ud","lastMutationID":1,"patch":[{"op":"remove","path":"/"},{"op":"add","path":"/foo","valueString":"\"bar\""}],"checksum":"c4e7090d","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
+			`{"stateID":"s3n5j759kirvvs3fqeott07a43lk41ud","lastMutationID":1,"patch":[{"op":"replace","path":"","valueString":"{}"},{"op":"add","path":"/foo","valueString":"\"bar\""}],"checksum":"c4e7090d","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
 			""},
 
 		// No Authorization header.
@@ -212,7 +212,7 @@ func TestAPIV1(t *testing.T) {
 			servetypes.ClientViewResponse{ClientView: map[string]json.RawMessage{"new": b(`"value"`)}, LastMutationID: 2},
 			200,
 			nil,
-			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"remove","path":"/"},{"op":"add","path":"/new","valueString":"\"value\""}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
+			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"replace","path":"","valueString":"{}"},{"op":"add","path":"/new","valueString":"\"value\""}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
 			""},
 
 		// Invalid checksum.
@@ -238,7 +238,7 @@ func TestAPIV1(t *testing.T) {
 			servetypes.ClientViewResponse{ClientView: map[string]json.RawMessage{"new": b(`"\u000b"`)}, LastMutationID: 2}, // "\u000B" is canonical
 			200,
 			nil,
-			`{"stateID":"qv7hd0v4i49utb1gjs2hiefh1vfhjegk","lastMutationID":2,"patch":[{"op":"remove","path":"/"},{"op":"add","path":"/new","valueString":"\"\\u000B\""}],"checksum":"b2dc0d6a","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
+			`{"stateID":"qv7hd0v4i49utb1gjs2hiefh1vfhjegk","lastMutationID":2,"patch":[{"op":"replace","path":"","valueString":"{}"},{"op":"add","path":"/new","valueString":"\"\\u000B\""}],"checksum":"b2dc0d6a","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
 			""},
 	}
 
@@ -337,7 +337,7 @@ func TestAPIV0(t *testing.T) {
 			servetypes.ClientViewResponse{},
 			0,
 			nil,
-			`{"stateID":"s3n5j759kirvvs3fqeott07a43lk41ud","lastMutationID":1,"patch":[{"op":"remove","path":"/"},{"op":"add","path":"/foo","value":"bar"}],"checksum":"c4e7090d","clientViewInfo":{"httpStatusCode":0,"errorMessage":""}}`,
+			`{"stateID":"s3n5j759kirvvs3fqeott07a43lk41ud","lastMutationID":1,"patch":[{"op":"replace","path":"","value":{}},{"op":"add","path":"/foo","value":"bar"}],"checksum":"c4e7090d","clientViewInfo":{"httpStatusCode":0,"errorMessage":""}}`,
 			""},
 
 		// Successful client view fetch.
@@ -350,7 +350,7 @@ func TestAPIV0(t *testing.T) {
 			servetypes.ClientViewResponse{ClientView: map[string]json.RawMessage{"new": b(`"value"`)}, LastMutationID: 2},
 			200,
 			nil,
-			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"remove","path":"/"},{"op":"add","path":"/new","value":"value"}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
+			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"replace","path":"","value":{}},{"op":"add","path":"/new","value":"value"}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
 			""},
 
 		// Successful client view fetch via override.
@@ -363,7 +363,7 @@ func TestAPIV0(t *testing.T) {
 			servetypes.ClientViewResponse{ClientView: map[string]json.RawMessage{"new": b(`"value"`)}, LastMutationID: 2},
 			200,
 			nil,
-			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"remove","path":"/"},{"op":"add","path":"/new","value":"value"}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
+			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"replace","path":"","value":{}},{"op":"add","path":"/new","value":"value"}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
 			""},
 
 		// Successful client view fetch via override (with override).
@@ -376,7 +376,7 @@ func TestAPIV0(t *testing.T) {
 			servetypes.ClientViewResponse{ClientView: map[string]json.RawMessage{"new": b(`"value"`)}, LastMutationID: 2},
 			200,
 			nil,
-			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"remove","path":"/"},{"op":"add","path":"/new","value":"value"}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
+			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"replace","path":"","value":{}},{"op":"add","path":"/new","value":"value"}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
 			""},
 
 		// Successful nop client view fetch where lastMutationID does not change.
@@ -415,7 +415,7 @@ func TestAPIV0(t *testing.T) {
 			servetypes.ClientViewResponse{ClientView: map[string]json.RawMessage{"new": b(`"value"`)}, LastMutationID: 2},
 			200,
 			errors.New("boom"),
-			`{"stateID":"s3n5j759kirvvs3fqeott07a43lk41ud","lastMutationID":1,"patch":[{"op":"remove","path":"/"},{"op":"add","path":"/foo","value":"bar"}],"checksum":"c4e7090d","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
+			`{"stateID":"s3n5j759kirvvs3fqeott07a43lk41ud","lastMutationID":1,"patch":[{"op":"replace","path":"","value":{}},{"op":"add","path":"/foo","value":"bar"}],"checksum":"c4e7090d","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
 			""},
 
 		// No Authorization header.
@@ -480,7 +480,7 @@ func TestAPIV0(t *testing.T) {
 			servetypes.ClientViewResponse{ClientView: map[string]json.RawMessage{"new": b(`"value"`)}, LastMutationID: 2},
 			200,
 			nil,
-			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"remove","path":"/"},{"op":"add","path":"/new","value":"value"}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
+			`{"stateID":"hoc705ifecv1c858qgbqr9jghh4d9l96","lastMutationID":2,"patch":[{"op":"replace","path":"","value":{}},{"op":"add","path":"/new","value":"value"}],"checksum":"f9ef007b","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
 			""},
 
 		// Invalid checksum.
@@ -506,7 +506,7 @@ func TestAPIV0(t *testing.T) {
 			servetypes.ClientViewResponse{ClientView: map[string]json.RawMessage{"new": b(`"\u000b"`)}, LastMutationID: 2}, // "\u000B" is canonical
 			200,
 			nil,
-			`{"stateID":"qv7hd0v4i49utb1gjs2hiefh1vfhjegk","lastMutationID":2,"patch":[{"op":"remove","path":"/"},{"op":"add","path":"/new","value":"\u000B"}],"checksum":"b2dc0d6a","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
+			`{"stateID":"qv7hd0v4i49utb1gjs2hiefh1vfhjegk","lastMutationID":2,"patch":[{"op":"replace","path":"","value":{}},{"op":"add","path":"/new","value":"\u000B"}],"checksum":"b2dc0d6a","clientViewInfo":{"httpStatusCode":200,"errorMessage":""}}`,
 			""},
 	}
 

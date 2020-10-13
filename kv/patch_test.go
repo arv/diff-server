@@ -141,7 +141,7 @@ func TestTopLevelRemoveV0(t *testing.T) {
 	to := FromNoms(noms, nm, ComputeChecksum(nm))
 
 	ops := []Operation{
-		Operation{OpRemove, "/", []byte{}, ""},
+		Operation{OpReplace, "", []byte("{}"), ""},
 		Operation{OpReplace, "/b", []byte("\"bb\""), ""},
 	}
 	r, err := ApplyPatch(0, noms, from, ops)
@@ -162,7 +162,7 @@ func TestTopLevelRemoveV1(t *testing.T) {
 	to := FromNoms(noms, nm, ComputeChecksum(nm))
 
 	ops := []Operation{
-		Operation{OpRemove, "/", nil, ""},
+		Operation{OpReplace, "", nil, "{}"},
 		Operation{OpReplace, "/b", nil, "\"bb\""},
 	}
 	r, err := ApplyPatch(1, noms, from, ops)

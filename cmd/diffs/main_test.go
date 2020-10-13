@@ -50,7 +50,7 @@ func TestServe(t *testing.T) {
 		{"pull",
 			`{"baseStateID": "00000000000000000000000000000000", "checksum": "00000000", "clientID": "clientid"}`,
 			"unittest",
-			`{"stateID":"r0d74qu25vi4dr8fmf58oike0cj4jpth","lastMutationID":0,"patch":[{"op":"remove","path":"/"}],"checksum":"00000000","clientViewInfo":{"httpStatusCode":0,"errorMessage":""}}`,
+			`{"stateID":"r0d74qu25vi4dr8fmf58oike0cj4jpth","lastMutationID":0,"patch":[{"op":"replace","path":"","value":{}}],"checksum":"00000000","clientViewInfo":{"httpStatusCode":0,"errorMessage":""}}`,
 			""},
 	}
 

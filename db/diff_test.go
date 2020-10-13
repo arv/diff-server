@@ -101,8 +101,9 @@ func TestDiffV0(t *testing.T) {
 			},
 			[]kv.Operation{
 				kv.Operation{
-					Op:   kv.OpRemove,
-					Path: "/",
+					Op:    kv.OpReplace,
+					Path:  "",
+					Value: json.RawMessage([]byte("{}")),
 				},
 				kv.Operation{
 					Op:    kv.OpAdd,
@@ -129,8 +130,9 @@ func TestDiffV0(t *testing.T) {
 			},
 			[]kv.Operation{
 				kv.Operation{
-					Op:   kv.OpRemove,
-					Path: "/",
+					Op:    kv.OpReplace,
+					Path:  "",
+					Value: json.RawMessage([]byte("{}")),
 				},
 				kv.Operation{
 					Op:    kv.OpAdd,
@@ -161,8 +163,9 @@ func TestDiffV0(t *testing.T) {
 			},
 			[]kv.Operation{
 				{
-					Op:   kv.OpRemove,
-					Path: "/",
+					Op:    kv.OpReplace,
+					Path:  "",
+					Value: []byte("{}"),
 				},
 				{
 					Op:    kv.OpAdd,
@@ -179,8 +182,9 @@ func TestDiffV0(t *testing.T) {
 			},
 			[]kv.Operation{
 				{
-					Op:   kv.OpRemove,
-					Path: "/",
+					Op:    kv.OpReplace,
+					Path:  "",
+					Value: []byte("{}"),
 				},
 				{
 					Op:    kv.OpAdd,
@@ -198,8 +202,9 @@ func TestDiffV0(t *testing.T) {
 			},
 			[]kv.Operation{
 				{
-					Op:   kv.OpRemove,
-					Path: "/",
+					Op:    kv.OpReplace,
+					Path:  "",
+					Value: []byte("{}"),
 				},
 				{
 					Op:    kv.OpAdd,
@@ -322,8 +327,9 @@ func TestDiffV1(t *testing.T) {
 			},
 			[]kv.Operation{
 				kv.Operation{
-					Op:   kv.OpRemove,
-					Path: "/",
+					Op:          kv.OpReplace,
+					Path:        "",
+					ValueString: "{}",
 				},
 				kv.Operation{
 					Op:          kv.OpAdd,
@@ -350,8 +356,9 @@ func TestDiffV1(t *testing.T) {
 			},
 			[]kv.Operation{
 				kv.Operation{
-					Op:   kv.OpRemove,
-					Path: "/",
+					Op:          kv.OpReplace,
+					Path:        "",
+					ValueString: "{}",
 				},
 				kv.Operation{
 					Op:          kv.OpAdd,
@@ -382,8 +389,9 @@ func TestDiffV1(t *testing.T) {
 			},
 			[]kv.Operation{
 				{
-					Op:   kv.OpRemove,
-					Path: "/",
+					Op:          kv.OpReplace,
+					Path:        "",
+					ValueString: "{}",
 				},
 				{
 					Op:          kv.OpAdd,
@@ -400,8 +408,9 @@ func TestDiffV1(t *testing.T) {
 			},
 			[]kv.Operation{
 				{
-					Op:   kv.OpRemove,
-					Path: "/",
+					Op:          kv.OpReplace,
+					Path:        "",
+					ValueString: "{}",
 				},
 				{
 					Op:          kv.OpAdd,
@@ -419,8 +428,9 @@ func TestDiffV1(t *testing.T) {
 			},
 			[]kv.Operation{
 				{
-					Op:   kv.OpRemove,
-					Path: "/",
+					Op:          kv.OpReplace,
+					Path:        "",
+					ValueString: "{}",
 				},
 				{
 					Op:          kv.OpAdd,
